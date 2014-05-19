@@ -6,18 +6,18 @@ using System.Text;
 
 namespace coder.model
 {
-//DATA record - csv with 3 records
-// 34 character 136 bit hex number for patient details
-//icd10 codes (space delimted then comma)
-//tariff codes (space delimited then comma)
-//provider id (not diplayed)
+    //DATA record - csv with 3 records
+    // 34 character 136 bit hex number for patient details
+    //icd10 codes (space delimted then comma)
+    //tariff codes (space delimited then comma)
+    //provider id (not diplayed)
 
     public class cvisit : ICloneable
     {
         public string ICDs { get; set; }
-       // public string Tariffs { get; set; }
+        // public string Tariffs { get; set; }
         public Visit Bitdata { get; set; }
-       // public cDate Date { get { return Bitdata.date; } } //set { Bitdata.date.dateTime = value; }}\\\\\\\\
+        // public cDate Date { get { return Bitdata.date; } } //set { Bitdata.date.dateTime = value; }}\\\\\\\\
         public byte tag { get; set; }
         public string Name { get; set; }
         public string TreatRegion { get; set; }
@@ -37,8 +37,8 @@ namespace coder.model
             this.Bitdata = new model.Visit(str[1]);
             this.ICDs = str[2];
             //this.Tariffs = str[3];
-           // this.TreatPlaceName = str[4];
-           // this.ReferPlaceName = str[5];
+            // this.TreatPlaceName = str[4];
+            // this.ReferPlaceName = str[5];
         }
         //---------------------------------------------------
         public cvisit()
