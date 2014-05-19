@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+	    <style type="text/css">
+            .style1
+            {
+                width: 100%;
+            }
+            .style2
+            {
+                width: 182px;
+                text-align: left;
+            }
+            .style3
+            {
+            }
+            .style4
+            {
+                width: 488px;
+            }
+            .style5
+            {
+                width: 182px;
+                text-align: left;
+                height: 23px;
+            }
+            .style6
+            {
+                width: 488px;
+                height: 23px;
+            }
+            .style7
+            {
+                height: 23px;
+            }
+        </style>
+	</head>
+	<body>
+	
+	    <h3>
+            Coder Help</h3>
+        <p>
+            Coder is a program&nbsp;that allows healthcare providers to code their 
+            patients&#39; healthcare visits and store data 
+            into cloud storage. The idea is for all healthcare providers to share data that 
+            is interesting for everyone and essential for public health planning without disclosing patient identifable 
+            information or their specific practice identifiable data.</p>
+    <p>
+        Presently only claims sent to medical schemes are coded and the data is used for 
+        checking claims. Coder offers a way to collect and share healthcare data on a 
+        much larger scale, combining coding with geographical and other essential data 
+        without compomising patient confidentialty.</p>
+        <h4>
+            Data Fields that are shared</h4>
+    <table class="style1" frame="border">
+        <tr>
+            <td class="style2">
+                Date                Date of visit</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style5">
+                Age Group</td>
+            <td class="style6">
+                Neonate,</td>
+            <td class="style7">
+            </td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Race</td>
+            <td class="style4">
+                Black|White|Coloured|Asian</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Gender</td>
+            <td class="style4">
+                Male|Female</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Treater practice type</td>
+            <td class="style3" colspan="2" rowspan="2">
+                SpecialistMD|GeneralistMD|RegNurse|Nurse|Therapist</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Referer practice type</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Treater institution&nbsp; type</td>
+            <td class="style3" colspan="2" rowspan="2">
+                TersiaryHosp|SecondaryHosp|PrimaryHosp|Clinic|CityPractice|RuralPractice</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Referrer institution type</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Treater place</td>
+            <td class="style3" colspan="2" rowspan="2">
+                GPS coordinates
+            </td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Referer place</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Primary ICD code</td>
+            <td class="style4">
+                ICD10</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Secondary ICD10 codes</td>
+            <td class="style4">
+                Other ICD10 codes (optional)</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Tariff codes</td>
+            <td class="style4">
+                Tariff codes (optional)</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                Insurer type</td>
+            <td class="style4">
+                Private, Public, None</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style2">
+                //Practice number</td>
+            <td class="style4">
+                Professional registraion number</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+    </table>&nbsp;</td>
+        </tr>
+    </table>
+    <h4>
+        &nbsp;</h4>
+<h4>
+        Visitsf all your patient Visits.&nbsp; You complile a new Visit 
+        record for each patient encounter. Visit go into a Visits list. You synchonize 
+        your Visits list with the server to upload the new Visits.</p>
+<h4>
+        Templates</h4>
+<p align="left">
+        Visits contain only general information so Coder gives you the facility to save 
+        Visits as Templates for coding future Visits. Templates are just named Visits 
+        without dates that you can list separately. You can select a Templates to 
+        generate a new visit. Its a very quick and accurate way to generate data.</p>
+<h4>
+        Places</h4>
+<p>
+        Coder uses low resolution GPS coordinateCoder uses low resolution GPS coordinates to record where patients come from and 
+        where they are treated.</p>
+<p>
+        We can provide the names and coordinates of major towns to import using File&gt;Import_places. 
+        These go into the Places list for viewing and editing, You should add your practice region and the places of your referals. 
+        Use decimal&nbsp; decimal degree coordinates. Coder rounds them to 
+        0.1 degree accuracy.</p>
+<h4>
+        How it works</h4>
+<p>
+        Coder compiles and lists Visits files and provides the means to synchronise them 
+        with a Internet server usisng a webservice. The server files all the Visits from 
+        all practices together by appending them to &#39;day_region&#39; files.&nbsp; are uses 
+        to store data (10 km map resolution)connects to webservice to store data on a 
+        webserver.&nbsp; . When you synchonize your practice data, all 
+        unsaved records are sent to the webservice, the appropriate day_region&nbsp; file opened 
+        or created and the data appended to it, 
+        one line per visit. The web service return&nbsp; the file length&nbsp; and Coder 
+        uses this to compute the file position of each visit which allows you to edit 
+        your data on the server..</p>
+    <p>
+        After allowing a month for late insertions and editing, the day files are sealed as 
+        a&nbsp; &#39;read_only&#39; and together with other day files they form a 
+        permanent data warehouse. Amazon S3 will probably be used for long term storage.be provided to search and retrieve information for any place 
+        and date by processing from the 
+        day files in the places of interest. Retrieved information could be in CSV of 
+        XML format for viewing or processing.</p>
+	
+	</body>
+</html>

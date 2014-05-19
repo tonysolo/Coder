@@ -1,0 +1,21 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=coder.chm
+Contents file=Table of Contents.hhc
+Default topic=topics\about.htm
+Display compile progress=No
+Index file=Index.hhk
+Language=0x409 English (United States)
+
+
+[FILES]
+topics\settings.htm
+topics\about.htm
+topics\regions.htm
+topics\storing.htm
+topics\Templates.htm
+topics\visits.htm
+topics\webserver.htm
+
+[INFOTYPES]
+

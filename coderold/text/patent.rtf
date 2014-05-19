@@ -1,0 +1,47 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Msftedit 5.41.21.2509;}\viewkind4\uc1\pard\sa200\sl276\slmult1\lang9\b\f0\fs22 Big data healthcare coder\b0\par
+I've designed a simple method to collect and organise healthcare big data for governments.\par
+\pard\sa200\sl276\slmult1 Heathcare is important for everyone. The numbers are huge. On average every person seeks healthcare 3.5 times a year - thats over 500,000 visits daily in SA and 70 million globally. But monitoring and statistics are badly recorded even for births and deaths in Africa.\par
+In SA and most other countries all heathcare visits are coded using ICD10 diagnostic codes which should be a perfect source of data for statistics.  But surpringly there has been no progress towards collecting and processing the data. The data is sent to medical schemes where its used validate claims but there is no further processing to produce healthcare statistics for the country. This means that all the providers' work looking up and checking codes is wasted and there are hugh downstream losses from failed planning and misplaced allocation of resources without the necessary information. \par
+My idea is for healthcare providers to use a simple mobile (cellphone) application to upload data at the time they treat patients of shortly after.  In small chunks  - a single line of data (about 40 characters of text) for each patient treated.\par
+Collecting data will use the medical principle that  \i 'common things occur commonly' \i0  - the software will let users clone data from previous visits using very little editing or typing - just point to an existing record and click and send. The sent data goes to a cloud storage file named according to the\i  date of storage\i0 . These \i 'Date' \i0 files are indexed by\i  'geographic region' \i0 - so the system becomes a \i 'geospatial filing system' \i0 which has many advantages and greatly expands the value of the healthcare data provided.\par
+\pard\sb100\sa100 For example using the NASA \lang1033\fs24 Socioeconomic Data and Applications Center (SEDAC) and the World Bank free public geospacial datasets can add regional population density, terrain, elevation and other information.\par
+Program details: The overall design is intended to produce very compact data that contains no person-identifable-information (PII). The patient is described only in terms af age group, gender, ethnic group and the similarly the provider as qualification eg. "nurse, technicion, specialist.." with an interest in... "anaethetics, dentistry, homeopathy..." - the user choices items from a list. There is no PII so the data can include specific diagnostic codes without concern for confidentialty. This will provide essential information for monitoring HIV or other stigmatised diseases.\par
+The user can use Google Maps to find regions by name and copy and paste the coordinates. The program translates these into a low resolution 2.6 arc minutes (5 Km) , similar to SEDAC data.\par
+Users can assign names of their choice to regions and code sequences to simplify editing new data. \par
+\b Advantages of this method:\b0\par
+The data contains a complete summary of the health visit: Date. Geospacial data for patient and treater. Specialty and qualification of treater and referrer. ICD10 code(s). Tariff code(s) in the least possible space.\par
+Ability to combine with other (public) geospacial datasets.\par
+No PII.\par
+Compact data (+- 40 characters - depends on codes). Low cost, even for global data.\par
+Automatically geographically scalable. Wherever the program is used the data will generate the appropiate region file and folder and store the data automatically.\par
+No database is used. Data is stored as plain text in files named according to the date the data was stored. There is a new file for each day added to each region. All the data from all providers are contained in the same day file as single lines of text. Suitable for parallel processing (Map Reduce) . Each record contains complete data so achiving is possible without affecting remaining data. \par
+The data contains progran version information to make provision for upgrades without losing the value in older data.\par
+Security. Uploading data requires a password. Users must register and provide email and the details of their insitution. Uploaded data includes a loader ID field for administators to communicate with the person or institition responsible for the data. This will be useful for practice management and providing assistance, feedback and information to users.\par
+There will be a website to display data and mapping that will to allow users to download data in different formats (csv, xml or json) for databases and spreadsheets. We will try to provide information and feedback to benefit the users practice.\par
+\par
+\pard\sa200\sl276\slmult1\b Novelty (short file names for global filing):\b0\par
+Most of the ideas in this project will probably be obvious to anyone with similar interests to mine. One exception might be the formula that I use to produce compact low resolution geospacial coordinates and the date used for filenames.\par
+Coordinates occur in three places in my data:  the patients origin, the treatment location, and the storage folder / file name. My conversion is simply to multiply decimal degree coodinates by the number 22.75 and convert the result to hexdecimal. The result is a 3 character hex number with a maximim value of FFF  for 180 degrees longitude and 7FF  for 90 degrees latitude. I prepend '0','1','2' or '3' for NE,NW,SE or SW. This is a very compact way to descibe geospacial data using only 7 characters for any location in the world and more compact than the usual 14 characters reguired for decimal degree with the same resolution. \par
+( A 12 bit integer value range gives 4096 discrete steps of 2.64 arc minutes which is similar to the SEDAC data 2.5 arc minutes - approximately 5 km at the equator )\par
+The lower resolution 'region' part of the filename consists of only  5 characters - the first 2 charcters of each coordinate and the same 'NSEW' character. It has 1/16 resolution (80 km at the equator). The region folders cover an area of 80 X 80 km and contain 256 higher resolution regions. \par
+Similarly the 'date' part of the filename is a 16 bit integer equal to the number of days since 01/01/2000. (converted to hexadecimal it is 4 characters)\par
+ \par
+\b The client program and cloud storage - (Synchronising, checking credentials, storage queues, loader ID, filing and backup, retrieving information)\par
+\b0 I've looked at Amazon Web Services and Microsoft's Azure. Both have similar features that would suit this application. \par
+I have written a .Net Winforms version of the program for testing. As decribed, a local copy of the users data is kept for recycling and a copy of the data is uploaded and combined (synchonised) with other users' data in cloud storage. \par
+The user can synchonize data at any time. It would be ideal to do this on the day of treatment but this is not required. Any convenient time for the user is accepable. The user cannot edit and chance data once it is uploaded.\par
+Using Amazon Web Services, the synch process will first validate the password with information held in a Amazon SimpleDB database which will return the loader ID to complete the data record. The data will then be added to an SQS storage queue. A server program, possibly running on an Amazon EC2 server will run continuously and offload data from all the clients from the SQS queue and append the data the a current server day file for each region. New region/day files will be opened if they don't already exist. At midnght all the day files from the past day will be transferred to Amazon S3 storage.\par
+And the same process will continue day after day.\par
+SQS queues can act as a buffer because they storing data for four days if the server stops for any reason. More SQS queues can be added to service specific regions if required and similarly more servers can be added to speed up processing or allocated to specific queues if it helps. So it will be easy to scale globally.\par
+A website will be located on the server to allow users to interact and download data.\par
+Amazon itemizes billing for the various components. I'll make sure that users who provide data will have access to data and won't be billed. In any case, with the small data size and the filing layout I think the cost will be neglibile even if the system is used on a global scale.\par
+If it does become costly then there must be more people in the world seeking healthcare than I imagined.\par
+ \par
+\lang9\fs22\par
+\par
+\par
+\par
+\pard\sa200\sl276\slmult1\par
+}
+ 

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="coder.model.visit">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\visit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="coder.model.template">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\template.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="coder.model.healthrecorder" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAACEAAAAQAAEAAAAAAAAAAAAAABAAAAAAABAA=</HashCode>
+      <FileName>model\healthrecorder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="coder.model.util" Collapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>model\util.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="healthrecord.model.pdata" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAABQAAEAAAAgCAABAAAAIAAAQIAAAAABAA=</HashCode>
+      <FileName>model\pdata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="healthrecord.model.region" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\region.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="coder.model.usersettings" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="System.Object" ManuallyRouted="true">
+      <Path>
+        <Point X="10.5" Y="3" />
+        <Point X="10.5" Y="2.906" />
+        <Point X="7.76" Y="2.906" />
+        <Point X="7.76" Y="0.438" />
+        <Point X="4.312" Y="0.438" />
+        <Point X="4.312" Y="1.124" />
+        <Point X="3.5" Y="1.124" />
+        <Point X="3.5" Y="1.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AABgAAAAgAAAACAEAAAAIAQAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>model\usersettings.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="healthrecord.model.VisitTempBase" Collapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAgAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\visittemplatebase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="coder.model.coordinate">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="System.Object" FixedToPoint="true">
+      <Path>
+        <Point X="9.75" Y="3.312" />
+        <Point X="6.5" Y="3.312" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAEgAAAAMGAAAAAAAAAAEAAAAgAgAAAAAAAA=</HashCode>
+      <FileName>model\coordinate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="coder.model.coderdate" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>model\dayreference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="coder.model.practitioner" Collapsed="true">
+    <Position X="18.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAIAAAAEKAAAAAAAABAA=</HashCode>
+      <FileName>model\usersettings.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="coder.model.practype" Collapsed="true">
+    <Position X="20.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAgAAAAQAEAAAAAAAAAAAAAAAACAAAAAAAAAAAI=</HashCode>
+      <FileName>model\usersettings.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

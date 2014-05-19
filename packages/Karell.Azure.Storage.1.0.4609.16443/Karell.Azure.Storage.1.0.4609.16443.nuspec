@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Karell.Azure.Storage</id>
+    <version>1.0.4609.16443</version>
+    <title>Azure Storage Simplified</title>
+    <authors>Karell Ste-Marie</authors>
+    <owners>Karell Ste-Marie</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Azure Storage Simplified</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="WindowsAzure.Storage" version="1.7.0.0" />
+        <dependency id="Microsoft.WindowsAzure.ConfigurationManager" version="1.7.0.3" />
+        <dependency id="protobuf-net" version="2.0.0.480" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+    <references>
+      <reference file="Karell.Azure.Storage.dll" />
+    </references>
+  </metadata>
+</package>

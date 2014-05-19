@@ -1,0 +1,109 @@
+﻿
+16 groups possible now
+//(numeric identifiers not possible in enum)
+//string[] age_group ={"Neonate","<12_months","1-4yrs",","5-12yrs","13_20yrs","21-40yrs","41-60",">60yrs"};
+
+Model data (?rename).
+//done Add FolderName Readonly ne,nw,se,sw plus coordinates to 64km (coords<<4)  
+//done Add Filename Readonly datename
+
+//fix visits class to store codedata,icd10s,tariffs, and coder id
+local filesystem S3 equiv folder and files
+//stored visits list
+
+local filesystem coder_data xml (isolated storage plus saveas(write)and open/import(read))
+
+Coders
+
+Most coders will be healthcare providers managing their own practices.
+Professional coders could be employed by large practices, clinics or hospital departments.
+The idea is to record all healthcare visits from now on and use the data properly for epidemiology instead if wasting it.
+Each loader will need to register with  email address and HPC number. He will reaceive a pin number that will decode a unique userID (his offset in the loaders' 'database')that will be part of his uploaded data. 
+Loader and registered users will be able to access web data.
+
+Program Flow
+
+First time start up shows the current location (if gps available).  User can select one or more 80x80 km regions and register as a loader. User will recieve a PIN which can be changed if desired. Each region selected has a separate cloud blob container with files for that region. The loader (l) blob keeps loader data 'PIN number info', MP number, Designation (coder, med practiioner, administrator). Metadata keeps the date of last access so that unused acoounts can be be deleted afer 3 months inactivity. Each loader will have a single record (a 512 byte page)located in each region he uses and this page location will be the userID that is included with Visit data uploads. See below.
+
+Subsequent startup shows the registed regions. The user (loader) selects one at a time to add Visit data.
+Before each upload the the loader data is checked that the user PIN is valid.
+
+Adding visits usually means selecting an existing one, duplicating it, editing if necessary. Even new visits require minimal editing or typing (so it should be easy for Windows Phone)
+
+The visits can to uploaded singly or in batches.
+
+Uploads consist of a json record with a 'loader header' and an array of Visits. The loader header contains the Loader region (80x80km resolution), and loaderID and designation code. The Visits contain Patient, Treater and Facility data all as bit representations in Hex format together with 5X5 km resolution GIS data.
+
+Thus the data will be very compact (a whole hospital daily output could be sent as a single json record)
+
+There will be a local copy of the data and the users' settings. (filed as json)
+
+
+Subsequent startup prompts for PIN code and shows registered regions for this user to load. 
+
+Local Data
+
+Coders will have a local copy of their data to use for local stats and can download 
+comparative data for similar practices in other regions. The local data will include 
+lists of templates and locations and other data used to automate coding.
+
+Cloud Storage
+
+The only data stored in the cloud will be compact visits data containing the primary
+ICD code, data and region and date. There are fields for optional supporting ICD10 codes and
+tariff codes.
+
+When the coder synchonizes his data with the cloud:
+Unsynchonized visits are sent in a batch to a queue
+A webservice checks the coder's credentials and returns a loader ID to add to data and authorise synching.
+The data will consist of a json record for a single day a 'loader' header and an array of 'visits' for the day. The record must be clipped less than 64 kilobytes (for messaging) if necessary.
+//A coderID tag is appended to record (security check - this might not be necessary).
+//The webservice will return verification for the coder program to record the synch.
+
+How will data be used?
+
+We plan to continuously process all the data collected. Each visit records the date,
+diagnosis, patient description, treating and referring practioner descriptions - including global coordinate positions. It will be possible to map disease patterns for epidemiology and compare different time periods. Additionally, there are free public datasets that will integrate with our data to provide socio-economic, population, terrain and other data based on global coordinates. Similarly dates contain a lot of information -  weekend, public holidays, social and natural events, climate and weather - so there will be a lot of useful new information. 
+
+Scalebility
+
+All visit records according to region and date will be stored together in 'region' data storage. The system is inherently scalable. If a user in any country decides to syschonize data, a new region storage sytem will be automatically opened to store the data. 
+
+The user experience will be hassle free, the files and data storage (naming and creating, backup etc) are handled automatically. 
+
+Users will keep a copy of their data is locally for local stats. If an internet connetion isn't available, it will be stored locally and sent later in a batch.
+
+Cloud Processing
+
+Web services
+
+* Rest POST service for loader registration and matching GET for retrieving LoaderID and PIN check, and a PUT for updating the PIN.
+
+* Rest POST sevice to upload visits: The visits are sorted and loaded as messages into azure queues, sharded accoring to longitude and with visibility timeout until midnight solar time for that longitude. Plan to use eight queues with processing changes every 45 minutes to allow 6 hours continuous processing for each region.
+
+There will be extra small worker role to monitor the eight queues and log the traffic in a log file. This worker will launch (possibly larger) worker roles to offload the queues and store the visit data to region blobs. 
+
+The data will be stored in the same region container used for the loader 'l' blob, but using a visit 'v' blob. All the visit data for each day will be assembled in a single json string and stored in the requireed number of pages. The date and number of pages for each date will be added to the v blob metadata.
+
+So it will ne possible to retrieve data for a region by date or by period from start date to end date.
+A Rest GET webservice to match the visit upload will provide the ability to download date for a region by single date or by date range.
+
+This solution should scale well. It would cost very little for a few regions or a small country and low cost to expand globally. Its istimated that people seek healthcare twice annually so for South Africa about 100 million visits or 3 gigabytes data per year. Similarly the processing would be switched on as required. The fixed costs would be a single extra small or small instance monitor running coninuously with two Web roles for REST web services - loader POST GET PUT, and Visits POST, GET and PUT.
+
+It could run mostly unattended (just routinely checking the log file to make adjustments)
+
+The data will produce valuable information:
+
+The patient and treater GIS data is 2.5 arc minutes resolution so it matches SEDAC socioecomomic data so combining these together will add huge value - population density, income, infrastructure terrain ...with disease stats, facilities and all the people employed in healthcare,  It will also allow distance travelled for treatment and checking and managing the distribution of treaters and healthcare facilities. 
+
+Storing by date order in page blobs with date metadata to locate date ranges will be very valualble. It will make it possible to compare periods of time or weekends or public holidays year on year. None of these details have been possible before.
+
+It should be possible to reward users and provide them with maps and data related to their work, and to provide approriate resources based on proper information. 
+
+Considering all the possiblities, I believe that developing and distributing this system could have a major impact on the current epidemics in Africa and locally - HIV, TB, maternal mortality, violence and road carnage.
+
+Perhaps building this information should be an ethical requirement of goverment and healthcare providers and should replace the current unpopular ethical and CPD points monitoring with something that works.
+
+
+
+

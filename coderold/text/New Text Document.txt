@@ -1,0 +1,56 @@
+    class pdata
+    {
+//string[] region = new string[64];
+ulong _pdata;
+        //public ushort date{get;set;}
+//public byte treat_country { get;set;}
+//public byte refer_country { get;set;}
+public UInt16 treat_region_coords { get;set;}
+public UInt16 refer_region_coords { get;set;}      
+public byte treat_practice { get; set; }
+public byte refer_practice{ get; set; }       
+public byte treat_practice_type {get; set;}
+public byte refer_practice_type{ get; set; }
+public byte race{ get;set;}
+public byte age{get;set;}
+public byte gender{get;set;}  
+
+public pdata(string str)
+{
+_pdata = (ulong)Convert.ToInt64(str,16);
+FillProperties(_pdata);
+//region[1] = "Gauteng,E_Cape,W_Cape";
+}
+
+public pdata(ulong _pd)
+{
+_pdata = _pd;
+FillProperties(_pdata);
+}
+
+private void FillProperties(ulong _pd)
+{
+//treat_country =       (byte)((_pd >> 36) & (ulong)0x3F);//6 bits
+//refer_country =       (byte)((_pd >> 30) & (ulong)0x3F);//6 bits
+//treat_region =        
+//refer_region=         
+
+treat_region_coords =  (UInt16)((_pd >> 34) & (ulong)0xFFF);//12 bits
+refer_region_coords =  (UInt16)((_pd >> 22) & (ulong)0xFFF);//12 bits
+treat_practice =      (byte)((_pd >> 18) & (ulong)0x0F);//4 bits
+refer_practice =      (byte)((_pd >> 14) & (ulong)0x0F);//4 bits
+treat_practice_type = (byte)((_pd >> 11) & (ulong)0x07);//3bits
+refer_practice_type = (byte)((_pd >> 8) & (ulong)0x07); //3bits
+race =                (byte)((_pd >> 5) & (ulong)0x07); //3bits   
+age =                 (byte)((_pd >> 1) & (ulong)0x0F);//4bits
+gender =              (byte)(_pd  & (ulong)0x01);//1bit   //total 46
+}
+       
+//public pdata();
+
+public override string ToString()
+{
+    return String.Format("{0:X12}",_pdata);
+}
+
+        } //DDD

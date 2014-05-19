@@ -1,0 +1,18 @@
+GLOBAL HEALTH GRID
+
+This is my plan to store healthcare data in Azure cloud storage and to provide the tools and services to display and extract useful 
+information. Previously data that has been collected by the heath profession for the medical schemes and public hospitals has not been  
+
+
+
+
+
+
+However to be successful the program must be simple and fast and collect only essential data that will be used. 
+I want this software and the information it produces to benefit and reward the healthcare providers so apart from providing data
+for public epidemiology, the providers will keep a copy of their own data for their own practice statistics and use the 
+global data to compare their practice profile. 
+
+All healthcare will be able to store a 'discharge summary' for every patient they treat.
+In most cases they will do this themselves but clinics might want to employ a coder to store all the patients' discharge data.
+

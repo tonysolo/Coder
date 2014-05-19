@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>WindowsAzure.Common</id>
+    <version>1.0.3</version>
+    <title>Helpers Tools for Windows Azure</title>
+    <authors>Microsoft DPE</authors>
+    <owners>Microsoft DPE</owners>
+    <licenseUrl>http://www.opensource.org/licenses/ms-pl</licenseUrl>
+    <projectUrl>http://watwp.codeplex.com/</projectUrl>
+    <iconUrl>http://wazmobiletoolkit.blob.core.windows.net/nuget/logos/WinAzure_rgb.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Class library that provides common helpers tools for Windows Azure.</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>WindowsAzure HelpersTools DPE</tags>
+    <dependencies>
+      <dependency id="Microsoft.WindowsAzure.ConfigurationManager" version="1.7.0.0" />
+      <dependency id="WindowsAzure.Storage" version="1.7.0.0" />
+    </dependencies>
+    <references>
+      <reference file="Common.dll" />
+    </references>
+  </metadata>
+</package>

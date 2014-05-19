@@ -1,0 +1,18 @@
+[OPTIONS]
+Auto Index=Yes
+Auto TOC=9
+Compatibility=1.1 or later
+Compiled file=coder.chm
+Contents file=contents.hhc
+Default topic=coderhelp.htm
+Display compile progress=No
+Index file=Index.hhk
+Language=0x409 English (United States)
+
+
+[FILES]
+coderhelp.htm
+topics.htm
+
+[INFOTYPES]
+

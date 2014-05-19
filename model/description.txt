@@ -1,0 +1,29 @@
+﻿This is the idea:
+
+A fast program for all healtcare providers: Specialists, GP's, health visitors, antenatal clinics, pathologists... everyone who deals with patients, to record the appropriate primary ICD10 code together with a mininal surounding information and store this into cloud storage as public data.
+
+The program must be easy and quick and reward users so they want to use it. To automate coding using wxisting data templates, so if the user has already looked up codes and compiled a procedure, he can use the same details as template  in future. Users like to have interactive reports and statistics for their practice and this should be easy to do with this application.
+
+Until now the whole process of ICD has been punitive for the providers of data. Its driven by "no-code-no-pay" and to make it worse there was no plan to process the data for what ICD10 is intended.
+Secondly, the data presently collected is useless for sharing. It contains data that medical schemes need with specific person identifiable information (PII)  - date-of-birth, full name, descritions of tariffs ...
+Thirdly, the data is not in a format that allows the data to be compactly stored and retrievable.
+Finally, there's no point in collecting only the data for medical scheme patients when thats just a small fraction of the population.
+
+This application will collect the right data, it will be a mobile app (cellphone?) to suit everyone, it will be useful for the practice as well as providing public healthcare statistics without sending any PPI.
+
+Data
+The data will be compact. Mostly numeric data as bit fields stored as a hexadecimal string:
+Gender 1 bit 
+Ethnic group 2 bits
+Age Group 3 bits
+Treater and Referrer qualification level 2 bits 
+Treater and Referrer primary interest 5 bits
+Treater and Referrer location 12 bit precision (2^12 = 180.00 degrees)
+Sender ID 12 bits
+ICD10 code(s) - text string space delimited
+Tariff codes - (Optional) text string space delimited
+
+File name = Treatment date 16 bit Hex string (day offset from 1/1/2000) 
+Folder name = treater location 8 bit precision
+
+Processing and storage
