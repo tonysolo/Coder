@@ -10,15 +10,15 @@ namespace MvcWebRole1.Controllers
 {
     public class ValuesController : ApiController
     {
-        
+
         // GET api/values
         public IEnumerable<string> Get()
         {
-          // CloudBlobContainer cbc = new CloudBlobContainer(
-           //string url = 
+            // CloudBlobContainer cbc = new CloudBlobContainer(
+            //string url = 
             //XmlDocument myXMLDocument = new XmlDocument();
             //myXMLDocument.Load(url);          
-         //   return converts string[] to xml
+            //   return converts string[] to xml
             return new string[] { "value1", "value2" };
         }
 
